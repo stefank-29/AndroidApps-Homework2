@@ -19,7 +19,7 @@ import com.example.homework2.models.Contact;
 public class ContactAdapter extends ListAdapter<Contact, ContactAdapter.ViewHolder> {
 
     // Diff item callback za animacije
-    protected ContactAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback) {
+    public ContactAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback) {
         super(diffCallback);
     }
 
