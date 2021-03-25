@@ -26,27 +26,24 @@
         app:layout_constraintTop_toBottomOf="@id/contactImage">
 
         <TextView
+            android:id="@+id/nameTv"
             style="@style/TextCard"
-            android:layout_weight="1"
-            android:text="pera" />
+            android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/surnameTv"
             style="@style/TextCard"
-            android:layout_weight="1"
-
-            android:text="pera" />
+            android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/numberTv"
             style="@style/TextCard"
-            android:layout_weight="1"
-
-            android:text="pera" />
+            android:layout_weight="1" />
 
         <TextView
+            android:id="@+id/emailTv"
             style="@style/TextCard"
-            android:layout_weight="1"
-
-            android:text="pera" />
+            android:layout_weight="1" />
 
     </LinearLayout>
 
