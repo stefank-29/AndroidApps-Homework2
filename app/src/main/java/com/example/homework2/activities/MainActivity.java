@@ -9,6 +9,9 @@ import com.example.homework2.R;
 
 public class MainActivity extends AppCompatActivity {
 
+    // View comps
+    private
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
