@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".activities.MainActivity">
 
     <EditText
         android:id="@+id/searchEt"
@@ -25,6 +25,10 @@
         android:id="@+id/contactsRv"
         android:layout_width="0dp"
         android:layout_height="0dp"
+        android:layout_marginHorizontal="12dp"
+        android:layout_marginVertical="10dp"
+        android:background="@drawable/background"
+        android:padding="10dp"
         app:layout_constraintBottom_toTopOf="@id/footer"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,13 +51,16 @@
             android:layout_marginRight="10dp"
             android:layout_weight="3"
             android:background="@drawable/background"
-            android:padding="8dp" />
+            android:padding="10dp"
+            android:textSize="14sp" />
 
         <Button
             android:layout_width="0dp"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:text="@string/add"/>
+            android:background="@color/secondaryLightColor"
+            android:shadowColor="@color/secondaryLightColor"
+            android:text="@string/add" />
     </LinearLayout>
 
 
