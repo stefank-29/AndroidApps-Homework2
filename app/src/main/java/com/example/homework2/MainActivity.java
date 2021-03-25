@@ -1,8 +1,11 @@
-git package com.example.homework2;
+package com.example.homework2;
+
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.homework2.R;
 
 public class MainActivity extends AppCompatActivity {
 
