@@ -79,6 +79,9 @@ public class MainActivity extends AppCompatActivity {
 
         addBtn.setOnClickListener(v -> {
             String name = addEditText.getText().toString();
+            if (name.equals("")) { // ako je prazan editText nista
+                return;
+            }
             recyclerViewModel.addContact("https://images-na.ssl-images-amazon.com/images/I/41cOeBbaV7L._AC_.jpg", name, name + "vic", "063-286-1389", name + "@gmail.com");
             addEditText.clearFocus();
             addEditText.setText("");
