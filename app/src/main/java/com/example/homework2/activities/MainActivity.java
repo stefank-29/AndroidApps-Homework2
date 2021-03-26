@@ -69,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
             public void afterTextChanged(Editable s) {
                 recyclerViewModel.filterContacts(s.toString());
                 // animacija zbog DiffUtil item callback
+                if (s.toString().equals("")) {
+                    addBtn.setEnabled(true);
+                } else {
+                    addBtn.setEnabled(false);
+                }
             }
         });
 
