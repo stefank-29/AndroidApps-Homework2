@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
@@ -51,13 +53,37 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void initListeners() {
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                recyclerViewModel.filterContacts(s.toString());
+                // animacija zbog DiffUtil item callback
+            }
+        });
+
+        addBtn.setOnClickListener(v -> {
+            String name = addEditText.getText().toString();
+            recyclerViewModel.addContact("https://images-na.ssl-images-amazon.com/images/I/41cOeBbaV7L._AC_.jpg", name, name + "vic", "063-286-1389", name + "@gmail.com");
+            addEditText.clearFocus();
+            addEditText.setText("");
+        });
 
     }
 
     // punjenje podataka u recyclerView
     public void initObservers() {
         recyclerViewModel.getContacts().observe(this, contacts -> { // kad dodju contacti prosledim to adapteru
-            contactAdapter.submitList(contacts);
+            contactAdapter.submitList(contacts);                           // (na pocetku kad instanciram u konstruktoru ili dodam novi)
         });
     }
 
