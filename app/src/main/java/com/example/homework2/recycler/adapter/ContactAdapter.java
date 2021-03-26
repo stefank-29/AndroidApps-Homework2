@@ -16,11 +16,16 @@ import com.bumptech.glide.Glide;
 import com.example.homework2.R;
 import com.example.homework2.models.Contact;
 
+import java.util.function.Function;
+
 public class ContactAdapter extends ListAdapter<Contact, ContactAdapter.ViewHolder> {
 
+    private Function<Contact, Void> onContactClicked;
+
     // Diff item callback za animacije
-    public ContactAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback) {
+    public ContactAdapter(@NonNull DiffUtil.ItemCallback<Contact> diffCallback, Function<Contact, Void> onContactClicked) {
         super(diffCallback);
+        this.onContactClicked = onContactClicked;
     }
 
     // kreira VH
@@ -29,7 +34,11 @@ public class ContactAdapter extends ListAdapter<Contact, ContactAdapter.ViewHold
     public ContactAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Create new viewHolder
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.contact_list_item, parent, false); // kreiranje view-a, gde ga zakacim, da li odmah da ga zakacim na root parenta
-        return new ViewHolder(view, parent.getContext()); // saljem context zbog Glide-a
+        return new ViewHolder(view, parent.getContext(), position -> { // saljem context zbog Glide-a
+            Contact contact = getItem(position);
+            onContactClicked.apply(contact);
+            return null; // vracam contact activitiju
+        });
     }
 
     // VH se binduje
@@ -43,9 +52,12 @@ public class ContactAdapter extends ListAdapter<Contact, ContactAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
         private Context context;
 
-        public ViewHolder(@NonNull View itemView, Context context) {
+        public ViewHolder(@NonNull View itemView, Context context, Function<Integer, Void> onItemClicked) {
             super(itemView);
             this.context = context;
+            itemView.findViewById(R.id.deleteBtn).setOnClickListener(v -> {
+                onItemClicked.apply(getAdapterPosition()); // vracam poziciju u listi adapteru
+            });
         }
 
         // bind - setovanje podataka iz modela na car_list_item

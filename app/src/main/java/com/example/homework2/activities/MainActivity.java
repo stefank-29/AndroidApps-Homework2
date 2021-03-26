@@ -12,6 +12,7 @@ import android.text.TextWatcher;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.example.homework2.R;
 import com.example.homework2.recycler.adapter.ContactAdapter;
@@ -89,7 +90,10 @@ public class MainActivity extends AppCompatActivity {
 
     // recyvler view pravljenje
     public void initRecycler() {
-        contactAdapter = new ContactAdapter(new ContactDiffItemCallback());
+        contactAdapter = new ContactAdapter(new ContactDiffItemCallback(), contact -> {
+            recyclerViewModel.deleteContact(contact.getId());
+            return null;
+        });
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         recyclerView.setAdapter(contactAdapter);
     }
